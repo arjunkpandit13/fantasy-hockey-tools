@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0b1020;
+  --bg-elevated: #121a30;
+  --surface: #16203a;
+  --surface-2: #1c2947;
+  --border: #27365c;
+  --text: #e8edf7;
+  --text-muted: #93a1c0;
+  --accent: #4cc3ff;
+  --accent-2: #7c5cff;
+  --home: #38d39f;
+  --away: #ffa94d;
+  --offnight: #ffd43b;
+  --b2b: #ff6b6b;
+  --stream-hi: #38d39f;
+  --stream-mid: #ffd43b;
+  --stream-lo: #ff6b6b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-home: var(--home);
+  --color-away: var(--away);
+  --color-offnight: var(--offnight);
+  --color-b2b: var(--b2b);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thin, restrained scrollbars for the schedule matrix. */
+.scroll-thin::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface-2) 37%,
+    var(--surface) 63%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
