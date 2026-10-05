@@ -19,4 +19,16 @@ export const CONFIG = {
 
   /** Reference season for season-wide lookups / season-boundary clamping. */
   defaultSeason: 20262027,
+
+  /**
+   * Fantrax league integration. The league ID is NOT a secret (it is public in
+   * the league URL), so it is safe to ship here; an env var overrides it for
+   * other deployments. No userSecretId is used — the roster overlay works from
+   * the league's own team list via a picker.
+   */
+  fantrax: {
+    leagueId: process.env.FANTRAX_LEAGUE_ID || "g0m6jyadmq2th10b",
+    /** Default team to show first (matched by name substring, case-insensitive). */
+    defaultTeamNameHint: "Arjun",
+  },
 } as const;

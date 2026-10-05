@@ -25,6 +25,7 @@ import { SummaryCards } from "@/components/SummaryCards";
 import { ScheduleFilters } from "@/components/ScheduleFilters";
 import { ScheduleTable } from "@/components/ScheduleTable";
 import { MobileTeamCards } from "@/components/MobileTeamCards";
+import { MyTeamPanel } from "@/components/MyTeamPanel";
 import { TeamScheduleDrawer } from "@/components/TeamScheduleDrawer";
 import { ScheduleSkeleton, ErrorState } from "@/components/StatesUI";
 
@@ -158,6 +159,7 @@ export function ScheduleClient() {
       ) : schedule ? (
         <div className="rise space-y-4">
           <SummaryCards schedule={schedule} />
+          <MyTeamPanel week={schedule} />
           <DailySlate schedule={schedule} />
           <ScheduleFilters
             filters={filters}
