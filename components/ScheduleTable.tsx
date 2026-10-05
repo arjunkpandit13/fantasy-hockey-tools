@@ -31,7 +31,7 @@ function SortHeader({
 }) {
   return (
     <th
-      className="px-2 py-2 text-center font-bold whitespace-nowrap"
+      className="px-2 py-2.5 text-center text-xs font-black uppercase tracking-wide whitespace-nowrap"
       title={title}
     >
       <button
@@ -60,14 +60,14 @@ export function ScheduleTable({
   onSelect,
 }: Props) {
   return (
-    <div className="scroll-thin overflow-x-auto rounded-xl border border-border bg-surface">
+    <div className="scroll-thin panel overflow-x-auto p-0">
       <table className="w-full border-collapse text-sm">
-        <thead className="sticky top-[56px] z-20 bg-bg-elevated">
+        <thead className="sticky top-[52px] z-20 bg-bg-elevated/95 backdrop-blur">
           <tr className="border-b border-border">
-            <th className="sticky left-0 z-30 bg-bg-elevated px-3 py-2 text-left">
+            <th className="sticky left-0 z-30 bg-bg-elevated/95 px-3 py-2.5 text-left backdrop-blur">
               <button
                 onClick={() => onSort("team")}
-                className={`inline-flex items-center gap-1 font-bold ${
+                className={`inline-flex items-center gap-1 text-xs font-black uppercase tracking-wide ${
                   sortKey === "team" ? "text-accent" : "text-text-muted hover:text-text"
                 }`}
               >
@@ -83,13 +83,13 @@ export function ScheduleTable({
               return (
                 <th
                   key={d}
-                  className={`px-1.5 py-2 text-center font-bold ${
+                  className={`px-1.5 py-2.5 text-center text-xs font-black uppercase tracking-wide ${
                     isOff ? "bg-offnight/10 text-offnight" : "text-text-muted"
                   }`}
                   title={isOff ? "Off-night: lower-volume NHL slate" : undefined}
                 >
                   <div>{weekdayLabel(d)}</div>
-                  <div className="text-[10px] font-medium opacity-70">{dayNum}</div>
+                  <div className="text-[10px] font-bold opacity-70">{dayNum}</div>
                 </th>
               );
             })}

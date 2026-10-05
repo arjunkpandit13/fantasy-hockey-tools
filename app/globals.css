@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b1020;
-  --bg-elevated: #121a30;
-  --surface: #16203a;
-  --surface-2: #1c2947;
-  --border: #27365c;
-  --text: #e8edf7;
-  --text-muted: #93a1c0;
-  --accent: #4cc3ff;
-  --accent-2: #7c5cff;
-  --home: #38d39f;
-  --away: #ffa94d;
-  --offnight: #ffd43b;
-  --b2b: #ff6b6b;
-  --stream-hi: #38d39f;
-  --stream-mid: #ffd43b;
-  --stream-lo: #ff6b6b;
+  --bg: #080c18;
+  --bg-elevated: #0e1526;
+  --surface: #141d33;
+  --surface-2: #1b2744;
+  --border: #26345a;
+  --border-soft: #1c294780;
+  --text: #eef2fb;
+  --text-muted: #94a3c4;
+  --accent: #38bdf8;
+  --accent-2: #818cf8;
+  --home: #34d399;
+  --away: #fb923c;
+  --offnight: #fbbf24;
+  --b2b: #f87171;
+  --stream-hi: #34d399;
+  --stream-mid: #fbbf24;
+  --stream-lo: #f87171;
 }
 
 @theme inline {
@@ -25,6 +26,7 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-accent: var(--accent);
@@ -43,11 +45,69 @@ html,
 body {
   padding: 0;
   margin: 0;
-  background: var(--bg);
   color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient background: deep navy with two soft accent glows, fixed so it
+   stays put while the matrix scrolls. */
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(900px 500px at 12% -8%, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(1000px 600px at 100% 0%, rgba(129, 140, 248, 0.1), transparent 55%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/* Reusable glass-ish surface used by cards. */
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%),
+    var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 12px 30px -18px rgba(0, 0, 0, 0.8);
+}
+.panel-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+}
+
+/* Accent-led section eyebrow. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+/* Subtle entrance for content once data loads. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise {
+  animation: rise 0.28s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; }
 }
 
 /* Thin, restrained scrollbars for the schedule matrix. */

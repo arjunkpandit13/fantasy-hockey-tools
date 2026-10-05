@@ -9,7 +9,8 @@ interface Props {
 }
 
 const SELECT_CLS =
-  "rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm text-text";
+  "rounded-lg border border-border bg-surface px-2.5 py-1.5 text-sm text-text outline-none transition-colors focus:border-accent/60 [color-scheme:dark]";
+const LABEL_CLS = "text-[10px] font-black uppercase tracking-wide text-text-muted";
 
 export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
   function set<K extends keyof Filters>(key: K, value: Filters[K]) {
@@ -17,11 +18,9 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
   }
 
   return (
-    <div className="flex flex-wrap items-end gap-3 rounded-xl border border-border bg-surface p-3">
+    <div className="panel flex flex-wrap items-end gap-3 p-3">
       <div className="flex flex-1 flex-col gap-1 min-w-[180px]">
-        <label className="text-[11px] font-semibold uppercase text-text-muted">
-          Search Team
-        </label>
+        <label className={LABEL_CLS}>Search Team</label>
         <input
           type="text"
           placeholder="Toronto, Leafs, TOR…"
@@ -32,9 +31,7 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-[11px] font-semibold uppercase text-text-muted">
-          Conference
-        </label>
+        <label className={LABEL_CLS}>Conference</label>
         <select
           value={filters.conference}
           onChange={(e) => set("conference", e.target.value as Filters["conference"])}
@@ -47,9 +44,7 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-[11px] font-semibold uppercase text-text-muted">
-          Division
-        </label>
+        <label className={LABEL_CLS}>Division</label>
         <select
           value={filters.division}
           onChange={(e) => set("division", e.target.value as Filters["division"])}
@@ -64,9 +59,7 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-[11px] font-semibold uppercase text-text-muted">
-          Games Played
-        </label>
+        <label className={LABEL_CLS}>Games Played</label>
         <select
           value={String(filters.minGp)}
           onChange={(e) => set("minGp", Number(e.target.value) as Filters["minGp"])}
@@ -80,9 +73,7 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label className="text-[11px] font-semibold uppercase text-text-muted">
-          Back-to-Back
-        </label>
+        <label className={LABEL_CLS}>Back-to-Back</label>
         <select
           value={filters.b2b}
           onChange={(e) => set("b2b", e.target.value as Filters["b2b"])}
@@ -104,8 +95,13 @@ export function ScheduleFilters({ filters, onChange, resultCount }: Props) {
         Off-Night Games
       </label>
 
-      <div className="ml-auto pb-1.5 text-sm text-text-muted">
-        {resultCount} team{resultCount === 1 ? "" : "s"}
+      <div className="ml-auto flex items-center gap-1.5 pb-1.5">
+        <span className="rounded-md bg-surface-2 px-2 py-1 text-xs font-black tabular-nums text-accent">
+          {resultCount}
+        </span>
+        <span className="text-xs font-semibold text-text-muted">
+          team{resultCount === 1 ? "" : "s"}
+        </span>
       </div>
     </div>
   );

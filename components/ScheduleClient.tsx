@@ -156,7 +156,7 @@ export function ScheduleClient() {
       ) : error ? (
         <ErrorState message={error} onRetry={() => load(weekStart)} />
       ) : schedule ? (
-        <>
+        <div className="rise space-y-4">
           <SummaryCards schedule={schedule} />
           <DailySlate schedule={schedule} />
           <ScheduleFilters
@@ -188,12 +188,12 @@ export function ScheduleClient() {
             />
           </div>
 
-          <p className="pt-1 text-center text-xs text-text-muted">
+          <p className="pt-1 text-center text-xs leading-relaxed text-text-muted">
             Off-nights are lower-volume NHL schedule days, making players on these
             teams easier to fit into fantasy lineups. Streaming Score evaluates
             schedule quality only and does not evaluate player skill.
           </p>
-        </>
+        </div>
       ) : null}
 
       <TeamScheduleDrawer
